@@ -1,37 +1,37 @@
 class MaximumGenerics<T extends Comparable<T>> {
 
-    T x, y, z;
+    T a, b, c;
 
-    // Constructor
-    MaximumGenerics(T x, T y, T z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    // constructor
+    MaximumGenerics(T a, T b, T c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
     }
 
-    // Static method to find max of 3 values
-    public static <T extends Comparable<T>> T testMaximum(T a, T b, T c) {
-        T max = a;
+    // method for 3 values
+    public static <T extends Comparable<T>> T findMax(T x, T y, T z) {
+        T max = x;
 
-        if (b.compareTo(max) > 0) {
-            max = b;
+        if (y.compareTo(max) > 0) {
+            max = y;
         }
 
-        if (c.compareTo(max) > 0) {
-            max = c;
+        if (z.compareTo(max) > 0) {
+            max = z;
         }
 
         printMax(max);
         return max;
     }
 
-    // Instance method
-    public T testMaximum() {
-        return testMaximum(x, y, z);
+    // method using object values
+    public T findMax() {
+        return findMax(a, b, c);
     }
 
-    // Method to handle more than 3 values
-    public static <T extends Comparable<T>> T testMaximum(T... values) {
+    // method for more than 3 values
+    public static <T extends Comparable<T>> T findMax(T... values) {
         T max = values[0];
 
         for (int i = 1; i < values.length; i++) {
@@ -44,34 +44,34 @@ class MaximumGenerics<T extends Comparable<T>> {
         return max;
     }
 
-    // Print method
+    // print method
     public static <T> void printMax(T max) {
-        System.out.println("Maximum value is: " + max);
+        System.out.println("Maximum is: " + max);
     }
 
     public static void main(String[] args) {
 
-        // Integer test cases
-        testMaximum(30, 20, 10);  // max at 1st
-        testMaximum(10, 50, 20);  // max at 2nd
-        testMaximum(10, 20, 90);  // max at 3rd
+        // Integer
+        findMax(50, 20, 30);
+        findMax(10, 80, 30);
+        findMax(10, 20, 90);
 
-        // Float test cases
-        testMaximum(3.5f, 2.1f, 1.0f);
-        testMaximum(1.1f, 5.5f, 2.2f);
-        testMaximum(1.1f, 2.2f, 9.9f);
+        // Float
+        findMax(3.2f, 1.5f, 2.8f);
+        findMax(1.1f, 5.6f, 2.2f);
+        findMax(1.1f, 2.2f, 9.9f);
 
-        // String test cases
-        testMaximum("Peach", "Apple", "Banana");
-        testMaximum("Apple", "Zoo", "Banana");
-        testMaximum("Apple", "Banana", "Zoo");
+        // String
+        findMax("Apple", "Peach", "Banana");
+        findMax("Apple", "Zoo", "Banana");
+        findMax("Apple", "Banana", "Zoo");
 
-        // Using Generic Class
+        // using object
         MaximumGenerics<Integer> obj = new MaximumGenerics<>(5, 15, 10);
-        obj.testMaximum();
+        obj.findMax();
 
-        // More than 3 values
-        testMaximum(10, 20, 30, 40, 50);
-        testMaximum("Apple", "Mango", "Peach", "Banana");
+        // more values
+        findMax(10, 20, 30, 40, 100);
+        findMax("Cat", "Dog", "Elephant", "Bear");
     }
 }
