@@ -1,35 +1,38 @@
 package org.example;
 
-import java.io.File;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        try {
+        InvoiceGenerator generator =
+                new InvoiceGenerator();
 
-            File file = new File(
-                    "bridglabz-java/src/csv/IndiaStateCensusData.csv");
+        // UC1
+        double fare =
+                generator.calculateFare(2.0, 5);
 
-            System.out.println("File Exists : "
-                    + file.exists());
+        System.out.println(
+                "Single Ride Fare : "
+                        + fare);
 
-            System.out.println("File Path : "
-                    + file.getAbsolutePath());
+        // UC2
+        Ride[] rides = {
+                new Ride(2.0, 5),
+                new Ride(3.0, 10)
+        };
 
-            StateCensusAnalyser analyser =
-                    new StateCensusAnalyser();
+        double totalFare =
+                generator.calculateFare(rides);
 
-            int count =
-                    analyser.loadIndiaCensusData(
-                            "bridglabz-java/src/csv/IndiaStateCensusData.csv");
+        System.out.println(
+                "Total Fare : "
+                        + totalFare);
 
-            System.out.println(
-                    "Number Of Records : " + count);
+        // UC3
+        InvoiceSummary summary =
+                generator.calculateInvoiceSummary(
+                        rides);
 
-        } catch (Exception e) {
-
-            System.out.println(e.getMessage());
-        }
+        System.out.println(summary);
     }
 }
