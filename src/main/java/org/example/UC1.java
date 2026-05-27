@@ -1,45 +1,55 @@
 package org.example;
 
-import java.util.Scanner;
+class Contact {
 
-class EmployeePayroll {
-    int id;
-    String name;
-    double salary;
+    String firstName;
+    String lastName;
+    String address;
+    String city;
+    String state;
+    String zip;
+    String phone;
+    String email;
 
-    EmployeePayroll(int id, String name, double salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
+    Contact(String firstName, String lastName,
+            String address, String city,
+            String state, String zip,
+            String phone, String email) {
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phone = phone;
+        this.email = email;
     }
 
     void display() {
-        System.out.println("Id: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Salary: " + salary);
+        System.out.println(firstName + " " + lastName);
+        System.out.println(address);
+        System.out.println(city + " " + state);
+        System.out.println(zip);
+        System.out.println(phone);
+        System.out.println(email);
     }
 }
 
 public class UC1 {
+
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Contact c = new Contact(
+                "Ranjith",
+                "Kumar",
+                "Anna Nagar",
+                "Chennai",
+                "Tamil Nadu",
+                "600001",
+                "9876543210",
+                "ranjith@gmail.com");
 
-        System.out.print("Enter Id: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-
-        System.out.print("Enter Name: ");
-        String name = sc.nextLine();
-
-        System.out.print("Enter Salary: ");
-        double salary = sc.nextDouble();
-
-        EmployeePayroll emp = new EmployeePayroll(id, name, salary);
-
-        System.out.println("\nEmployee Details");
-        emp.display();
-
-        sc.close();
+        c.display();
     }
 }

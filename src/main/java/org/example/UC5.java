@@ -1,23 +1,28 @@
 package org.example;
 
-import java.io.IOException;
-import java.nio.file.*;
+import java.util.ArrayList;
+
+class ContactUc5 {
+
+    String name;
+
+    ContactUc5(String name) {
+        this.name = name;
+    }
+}
 
 public class UC5 {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        Path path = Paths.get("employee.txt");
+        ArrayList<ContactUc5> list = new ArrayList<>();
 
-        // Print File Content
-        System.out.println("Employee Payroll Details:\n");
+        list.add(new ContactUc5("Ranjith"));
+        list.add(new ContactUc5("Kumar"));
+        list.add(new ContactUc5("Arun"));
 
-        Files.lines(path)
-                .forEach(System.out::println);
-
-        // Count Entries
-        long count = Files.lines(path).count();
-
-        System.out.println("\nNumber of Entries: " + count);
+        for (ContactUc5 c : list) {
+            System.out.println(c.name);
+        }
     }
 }

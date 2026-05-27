@@ -1,34 +1,29 @@
 package org.example;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.ArrayList;
 
-class Employee {
-    int id;
+class ContactUc4 {
+
     String name;
-    double salary;
 
-    Employee(int id, String name, double salary) {
-        this.id = id;
+    ContactUc4(String name) {
         this.name = name;
-        this.salary = salary;
     }
 }
 
 public class UC4 {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        Employee emp1 = new Employee(101, "Ranjith", 50000);
-        Employee emp2 = new Employee(102, "Kumar", 60000);
+        ArrayList<ContactUc4> list = new ArrayList<>();
 
-        FileWriter writer = new FileWriter("employee.txt");
+        list.add(new ContactUc4("Ranjith"));
+        list.add(new ContactUc4("Arun"));
 
-        writer.write(emp1.id + " " + emp1.name + " " + emp1.salary + "\n");
-        writer.write(emp2.id + " " + emp2.name + " " + emp2.salary + "\n");
+        list.removeIf(c -> c.name.equals("Arun"));
 
-        writer.close();
-
-        System.out.println("Employee Payroll Written to File");
+        for (ContactUc4 c : list) {
+            System.out.println(c.name);
+        }
     }
 }

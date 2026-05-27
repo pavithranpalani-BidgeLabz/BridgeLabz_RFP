@@ -1,45 +1,45 @@
 package org.example;
-import java.io.File;
-import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Contacts {
+
+    String firstName;
+    String lastName;
+
+    Contacts(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    void display() {
+        System.out.println(firstName + " " + lastName);
+    }
+}
 
 public class UC2 {
-    public static void main(String[] args) throws IOException {
 
-        File file = new File("sample.txt");
+    public static void main(String[] args) {
 
-        // Create File
-        if (file.createNewFile()) {
-            System.out.println("File Created");
-        }
+        ArrayList<Contacts> list = new ArrayList<>();
 
-        // Check Exists
-        if (file.exists()) {
-            System.out.println("File Exists");
-        }
+        Scanner sc = new Scanner(System.in);
 
-        // Create Directory
-        File dir = new File("MyFolder");
-        if (dir.mkdir()) {
-            System.out.println("Directory Created");
-        }
+        System.out.print("Enter First Name: ");
+        String first = sc.nextLine();
 
-        // List Files
-        File current = new File(".");
-        String[] files = current.list();
+        System.out.print("Enter Last Name: ");
+        String last = sc.nextLine();
 
-        System.out.println("\nFiles and Directories:");
-        for (String f : files) {
-            System.out.println(f);
-        }
+        Contacts c = new Contacts(first, last);
 
-        // Delete File
-        if (file.delete()) {
-            System.out.println("\nFile Deleted");
-        }
+        list.add(c);
 
-        // Check Not Exists
-        if (!file.exists()) {
-            System.out.println("File Does Not Exist");
+        System.out.println("\nContact Added");
+
+        for (Contacts con : list) {
+            con.display();
         }
     }
 }

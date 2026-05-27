@@ -1,36 +1,35 @@
 package org.example;
 
-import java.io.IOException;
-import java.nio.file.*;
+import java.util.ArrayList;
+
+class Contactss {
+
+    String name;
+    String phone;
+
+    Contactss(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+}
 
 public class UC3 {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
-        Path path = Paths.get(".");
+        ArrayList<Contactss> list = new ArrayList<>();
 
-        WatchService watchService =
-                FileSystems.getDefault().newWatchService();
+        list.add(new Contactss("Ranjith", "9876543210"));
 
-        path.register(
-                watchService,
-                StandardWatchEventKinds.ENTRY_CREATE,
-                StandardWatchEventKinds.ENTRY_DELETE,
-                StandardWatchEventKinds.ENTRY_MODIFY
-        );
+        for (Contactss c : list) {
 
-        System.out.println("Watching Directory...");
-
-        while (true) {
-
-            WatchKey key = watchService.take();
-
-            for (WatchEvent<?> event : key.pollEvents()) {
-                System.out.println(event.kind()
-                        + " : " + event.context());
+            if (c.name.equals("Ranjith")) {
+                c.phone = "9999999999";
             }
+        }
 
-            key.reset();
+        for (Contactss c : list) {
+            System.out.println(c.name + " " + c.phone);
         }
     }
 }
